@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>{{champ}} chambre</h1>
+<div mat-dialog-content>
+  <form [formGroup]="roomForm" class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Numero</mat-label>
+      <input name="num" formControlName="num" matInput placeholder="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Etage</mat-label>
+      <input name="floors" formControlName="floors" matInput placeholder="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Prix</mat-label>
+      <input name="price" formControlName="price" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Numéro de tel</mat-label>
+      <input name="phoneNumber" formControlName="phoneNumber" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select name="types" formControlName="types">
+        <mat-option *ngFor="let tpe of types" [value]="tpe" name="phoneNumber" formControlName="types">
+          {{tpe.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <section class="example-section">
+      <mat-checkbox class="example-margin" name="availability" formControlName="availability">Disponibilité</mat-checkbox>
+    </section>
+
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="addOrUpdateRoom()">{{champ}}</button>
+      <button mat-raised-button color="warn" (click)="closeDialog()">Fermer</button>
+    </div>
+  </form>
+</div>

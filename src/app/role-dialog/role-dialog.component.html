@@ -1,0 +1,15 @@
+
+<h1 mat-dialog-title>Modifier role</h1>
+<div mat-dialog-content>
+  <form [formGroup]="roleForm" class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input name="name" formControlName="name" matInput placeholder="">
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="addOrUpdateRole()">{{champ}}</button>
+      <button mat-raised-button color="warn" (click)="closeDialog()">Fermer</button>
+    </div>
+  </form>
+</div>

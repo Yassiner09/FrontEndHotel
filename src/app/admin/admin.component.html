@@ -1,0 +1,74 @@
+<mat-form-field appearance="standard">
+  <mat-label>Filtrer</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="idRes">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"></td>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let row"> {{row.date |date}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Heure </th>
+      <td mat-cell *matCellDef="let row"> {{row.time.toString().substring(0,5)}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="duree">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Durée </th>
+      <td mat-cell *matCellDef="let row"> {{row.duree}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="room.num">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Numéro de chambre </th>
+      <td mat-cell *matCellDef="let row"> {{row.room.num}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="client.cin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cin du client </th>
+      <td mat-cell *matCellDef="let row"> {{row.client.cin}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="facture.totalPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Prix total </th>
+      <td mat-cell *matCellDef="let row"> {{row.facture.totalPrice+' DHS'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+      <td mat-cell *matCellDef="let row">
+        <button *ngIf="isAdmin()" mat-icon-button color="primary" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="editReservation(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button *ngIf="isAdmin()" mat-icon-button color="warn" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="deleteReservation(row.idRes)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button *ngIf="isUser() || isAdmin()" mat-stroked-button color="warn" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="editServiceReservation(row)">
+          <mat-icon>add</mat-icon>
+          ajouter service
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Données introuvables "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>

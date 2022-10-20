@@ -1,0 +1,17 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin-top: 20%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.mat-raised-button{
+  background-color: #3e5c76;
+  color: white;
+  width: 500px;
+  height: 50px;
+  font-size: 17px;
+}

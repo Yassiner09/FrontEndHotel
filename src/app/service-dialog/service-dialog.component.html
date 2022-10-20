@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{champ}} service</h1>
+<div mat-dialog-content>
+  <form [formGroup]="serviceForm" class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input name="name" formControlName="name" matInput placeholder="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <input name="description" formControlName="description" matInput placeholder="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Prix</mat-label>
+      <input name="price" formControlName="price" matInput placeholder="">
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="addOrUpdateService()">{{champ}}</button>
+      <button mat-raised-button color="warn" (click)="closeDialog()">Fermer</button>
+    </div>
+  </form>
+</div>

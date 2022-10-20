@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>{{btnAndHeader}} réservation</h1>
+<div mat-dialog-content>
+  <form [formGroup]="reservationForm" class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Choisir une date</mat-label>
+      <input name="date" formControlName="date" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label></mat-label>
+      <input type="time" name="time" formControlName="time" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Durée</mat-label>
+      <input type="number" name="duree" formControlName="duree" matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Chambre</mat-label>
+      <mat-select name="room" formControlName="room">
+        <mat-option *ngFor="let room of roomsAvailable" [value]="room">
+          {{room.num + ' de type ' +room.types.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="addOrUpdateReservation()">{{btnAndHeader}}</button>
+      <button mat-raised-button color="warn" (click)="closeDialog()">Fermer</button>
+    </div>
+  </form>
+</div>

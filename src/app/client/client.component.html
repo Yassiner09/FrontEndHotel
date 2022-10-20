@@ -1,0 +1,87 @@
+<button class="mat-button" mat-raised-button color="warn" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+  Ajouter un client
+</button>
+<mat-form-field appearance="standard">
+  <mat-label>Filtrer</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+  <br>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="idClt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"></td>
+    </ng-container>
+
+    <!-- Progress Column -->
+
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+      <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </th>
+      <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+
+    <ng-container matColumnDef="cin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cin </th>
+      <td mat-cell *matCellDef="let row">{{row.cin}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cardNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Carte bancaire </th>
+      <td mat-cell *matCellDef="let row"> {{row.cardNumber}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+
+    <ng-container matColumnDef="nationality">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nationalité </th>
+      <td mat-cell *matCellDef="let row">{{row.nationality}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="fidelity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+      <td mat-cell *matCellDef="let row">
+        <div *ngIf="row.fidelity.name!='aucune'">
+          {{row.fidelity.name}}
+        </div>
+        <div *ngIf="row.fidelity.name=='aucune'">
+          <mat-icon color="warn">event_busy</mat-icon>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="editClient(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="deleteClient(row)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Données introuvables "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+

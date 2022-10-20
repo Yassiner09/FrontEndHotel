@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>{{champ}} service</h1>
+<div mat-dialog-content>
+  <form [formGroup]="serviceForm" class="example-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Service</mat-label>
+      <mat-select name="service" formControlName="service">
+        <mat-option *ngFor="let service of services" [value]="service.idService">
+          {{service.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="addServiceToReservation()">{{champ}}</button>
+      <button mat-raised-button color="warn" (click)="closeDialog()">Fermer</button>
+    </div>
+  </form>
+</div>

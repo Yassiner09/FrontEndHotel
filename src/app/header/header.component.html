@@ -1,0 +1,37 @@
+<mat-toolbar class="mat-tab-nav-bar">
+  <button mat-icon-button *ngIf="isLoggedIn()" class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="!isLoggedIn()" class="example-icon" aria-label="Example icon-button with menu icon" (click)="home()">
+    <img src="../../../assets/hotel.png" class="img-fluid">
+  </button>
+  <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu" mat-icon-button *ngIf="isLoggedIn()" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Données personnelles</button>
+    <button mat-menu-item (click)="changePassword()">Changer le mot de passe</button>
+  </mat-menu>
+
+  <button mat-icon-button *ngIf="isLoggedIn()" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-nav-list>
+      <a mat-list-item routerLink="admin" class="navbar_link" (click)="drawer.toggle()"><mat-icon style="margin-right: 6px">event_available</mat-icon>Reservations</a>
+      <a mat-list-item routerLink="client" class="navbar_link" (click)="drawer.toggle()"><mat-icon style="margin-right: 6px">supervisor_account</mat-icon>Clients</a>
+      <a mat-list-item routerLink="chambre" class="navbar_link" (click)="drawer.toggle()"><mat-icon style="margin-right: 6px">airline_seat_individual_suite</mat-icon>Chambres</a>
+      <a mat-list-item routerLink="role" class="navbar_link" (click)="drawer.toggle()"><mat-icon style="margin-right: 6px">no_encryption</mat-icon>Roles</a>
+      <a mat-list-item routerLink="service" class="navbar_link" (click)="drawer.toggle()"><mat-icon style="margin-right: 6px">local_bar</mat-icon>Services</a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>
